@@ -26,7 +26,7 @@ class ViewController: UIViewController {
 
 
     
-    var seconds = 99 //This variable will hold a starting value of seconds. It could be any amount above 0.
+    var seconds = 100 //This variable will hold a starting value of seconds. It could be any amount above 0.
     
     var score = 0
     
@@ -46,6 +46,19 @@ class ViewController: UIViewController {
         gridNineLabel.isEnabled = false
     }
     
+    func timeUpAlert(){
+        
+        // create the alert
+        let alert = UIAlertController(title: "Time Up!", message: "Try Again.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
     }
@@ -57,11 +70,11 @@ class ViewController: UIViewController {
         }else{
         disableButton()
         timerLabel.text = "Time : 0"
+        //timeUpAlert()
         }
     }
     
 
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -293,6 +306,44 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func resetGame(_ sender: UIButton)
+    {
+        runTimer()
+        score = 0
+        scoreLabel.text = ""
+        if !isTimerRunning{
+        seconds = 100
+        }
+        
+        gridOneLabel.setTitle("\(0)", for: UIControlState.normal)
+        gridTwoLabel.setTitle("\(0)", for: UIControlState.normal)
+        gridThreeLabel.setTitle("\(0)", for: UIControlState.normal)
+        gridFourLabel.setTitle("\(0)", for: UIControlState.normal)
+        gridFiveLabel.setTitle("\(0)", for: UIControlState.normal)
+        gridSixLabel.setTitle("\(0)", for: UIControlState.normal)
+        gridSevenLabel.setTitle("\(0)", for: UIControlState.normal)
+        gridEightLabel.setTitle("\(0)", for: UIControlState.normal)
+        gridNineLabel.setTitle("\(0)", for: UIControlState.normal)
+        
+        gridOneLabel.isEnabled = true
+        gridOneLabel.backgroundColor = UIColor.orange
+        gridTwoLabel.isEnabled = true
+        gridTwoLabel.backgroundColor = UIColor.orange
+        gridThreeLabel.isEnabled = true
+        gridThreeLabel.backgroundColor = UIColor.orange
+        gridFourLabel.isEnabled = true
+        gridFourLabel.backgroundColor = UIColor.orange
+        gridFiveLabel.isEnabled = true
+        gridFiveLabel.backgroundColor = UIColor.orange
+        gridSixLabel.isEnabled = true
+        gridSixLabel.backgroundColor = UIColor.orange
+        gridSevenLabel.isEnabled = true
+        gridSevenLabel.backgroundColor = UIColor.orange
+        gridEightLabel.isEnabled = true
+        gridEightLabel.backgroundColor = UIColor.orange
+        gridNineLabel.isEnabled = true
+        gridNineLabel.backgroundColor = UIColor.orange
+    }
 
 
 } //end of class
